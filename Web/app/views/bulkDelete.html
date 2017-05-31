@@ -1,0 +1,32 @@
+<h3>Eliminar</h3>
+<form id="registrosForm" class="form-horizontal" ng-switch="isLoading">
+    <div style="margin-bottom:30px;">Selecione la fecha en la que se cargaron los registros que desea eliminar.</div>
+    <div class="form-group">
+        <label for="uploadFile" class="col-sm-2 control-label">Selecciona la fecha de carga:</label>
+        <div class="col-sm-4">
+            <select class="form-control" ng-model="creationObject" ng-options="cc.date for cc in creationCodes">
+              <option value="">-- Seleccione fecha --</option>
+            </select>
+        </div>
+    </div>
+    <div>
+        <input type="submit"
+               value="Eliminar"
+               class="btn btn-default btn-primary"
+               ng-click="deleteRecords()"
+               ng-disabled="disableSubmit">
+    </div>
+    <div ng-switch-when="false">
+        <div class="success resultMsg"
+             ng-show="callSucced">
+            <span>Se eliminaron {{nroRegistros}} registros.</span>
+        </div>
+        <div class="error errorMsg"
+             ng-show="errorMsg">
+            <span>{{errorMsg}}.</span>
+        </div>
+    </div>
+    <div ng-switch-when=true>
+        <i class="fa fa-spinner fa-spin"></i>
+    </div>
+</form>

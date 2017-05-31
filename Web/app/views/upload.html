@@ -1,0 +1,40 @@
+<h3>Carga de Registros</h3>
+<form id="registrosForm" class="form-horizontal" ng-switch="isLoading">
+    <div class="form-group">
+        <label for="uploadFile" class="col-sm-2 control-label">Elegir archivo:</label>
+        <div class="col-sm-4">
+            <input type="file"
+               class="form-control"
+               id="uploadFile"
+               name="uploadFile"
+               accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
+               required
+               ng-disabled="disableSubmit"
+               data-file-model="customer.file"/>
+        </div>
+    </div>
+    <div>Recuerde, el orden de las columnas deberá ser el siguiente</div>
+    <br/>
+    <div><strong> MES | LIMA/PROVINCIA | N° Doc. | Fecha | Para | Dirección | Distrito | Usuario remitente | Código | Referencia</strong></div>
+    <br/>
+    <div>
+        <input type="submit"
+               value="Enviar"
+               class="btn btn-default btn-primary"
+               ng-click="saveData(fileData)"
+               ng-disabled="disableSubmit">
+    </div>
+    <div ng-switch-when="false">
+        <div class="success resultMsg"
+             ng-show="callSucced">
+            <span>Se han guardado {{nroRegistros}} registros.</span>
+        </div>
+        <div class="error errorMsg"
+             ng-show="errorMsg">
+            <span>{{errorMsg}}.</span>
+        </div>
+    </div>
+    <div ng-switch-when=true>
+        <i class="fa fa-spinner fa-spin"></i>
+    </div>
+</form>
